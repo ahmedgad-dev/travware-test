@@ -2,16 +2,15 @@ import React, {useContext} from "react";
 import  './styles.css'
 import ShoppingSvg  from '../../assets/shopping-bag.svg'
 import Image from 'next/image';
-
-//import { CartContext } from "../../context/cart.context";
+import { CartContext } from "../../context/cart.context";
 
 const CartIcon = () =>{     
- //  const {cartCount, toggleCartOpen} = useContext(CartContext) 
+   const {cartCount, toggleCartOpen} = useContext(CartContext) 
 
    return(
-      <div className="cart-icon" >
+      <div className="cart-icon" onClick={toggleCartOpen}>
         <Image src={ShoppingSvg} className='shopping-icon'/>
-        <span className="item-count">3</span>
+        <span className="item-count">{cartCount}</span>
       </div>
     )
 }

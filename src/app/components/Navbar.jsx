@@ -1,7 +1,11 @@
-import React from 'react'
+import React,{useState} from 'react'
 import CartIcon from './cart-icon/CartIcon'
+import CartDropdown from './cart-dropdown/CartDropDown'
+import Link from 'next/link'
+import { CartContext } from '../context/cart.context'
 
 function Navbar() {
+  const {cartOpen} = React.useContext(CartContext)
   return (
     <div className="navbar bg-base-100" style={{ color:'black'}}>
   <div className="navbar-start">
@@ -35,13 +39,15 @@ function Navbar() {
           </ul>
         </details>
       </li>
-      <li><a href=''>Item 3</a></li>
+      <li><Link href='/checkout'>Checkout</Link></li>
     </ul>
   </div>
   <div className="navbar-end">
+  <CartIcon/>
     <a href='' className="btn">Button</a>
-    <CartIcon/>
+
   </div>
+  {cartOpen? <CartDropdown/> : null} 
 </div>
   )
 }

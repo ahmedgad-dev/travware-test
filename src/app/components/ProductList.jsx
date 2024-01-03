@@ -6,7 +6,7 @@ import Product from './Product'
 import { IoIosArrowRoundForward } from "react-icons/io";
 
 
- const CardList = () => {
+ const ProductList = () => {
   const [data,setData] = useState([])
   const dataUrl = 'https://fakestoreapi.com/products'
 
@@ -46,4 +46,4 @@ import { IoIosArrowRoundForward } from "react-icons/io";
   )
 }
 
-export default CardList
+export default ProductList

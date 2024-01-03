@@ -1,18 +1,16 @@
 "use client"
 import Navbar from './components/Navbar'
-import CardList from './components/CardList'
-//import Product from './components/Product'
+import ProductList from './components/ProductList'
 import { AppProvider } from './context/globalContext'
-import { BrowserRouter } from 'react-router-dom'
+import { CartProvider } from './context/cart.context'
+
 
 export default function Home() {
   return (
-    <AppProvider>
-      <main className="">
-        <Navbar/>
-        <CardList/> 
-      </main>
-   </AppProvider>
-
+        <main className="">
+         <Navbar/>
+         <ProductList/> 
+       </main>
+     
   )
 }

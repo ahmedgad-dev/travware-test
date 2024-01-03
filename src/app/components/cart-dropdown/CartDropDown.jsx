@@ -1,15 +1,12 @@
 import React, {useContext} from 'react'
-import './cart-dropdown.styles.scss'
+import './styles.css'
 import { CartContext } from '../../context/cart.context';
-import CustomButton from '../custom-button/CustomButton'
 import CartItem from '../cart-item/CartItem';
-import { useNavigate } from "react-router-dom";
+import Link from 'next/link';
 
 
 const CartDropdown = () => {
-  const {cartItems} = useContext(CartContext)
-
-    let navigate = useNavigate();
+    const {cartItems} = useContext(CartContext)
     return(
         <div className='cart-dropdown'> 
             {cartItems.length ?
@@ -19,11 +16,8 @@ const CartDropdown = () => {
                  <CartItem key={item.id} item={item}/>
                ))}                                        
             </div> 
-             <CustomButton onClick={() =>{ navigate('/checkout')}}>GO TO CHECKOUT</CustomButton>  
-            </div> : <span className='empty-span'>Cart is currently Empty <br/> 
-                        <CustomButton className='empty-message-btn'  onClick={() => {navigate('/shop')}}> Shop Now </CustomButton>
-                     </span>
-            }                         
+             <Link className='btn btn-outline' href='/checkout'>GO TO CHECKOUT</Link> 
+            </div> : <span className='empty-span'>Cart is currently empty! add items <br/></span>}                              
         </div>
     )
 }

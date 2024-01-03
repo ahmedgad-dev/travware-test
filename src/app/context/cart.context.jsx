@@ -1,5 +1,5 @@
-import React, {createContext} from 'react'
-import { useReducer } from 'react'
+"use client"
+import React, {createContext,useReducer} from 'react'
 //import cartReducer from '../reducers/cartReducer'
 import { actionTypes } from '../reducers/actions'
 
@@ -43,7 +43,12 @@ const INITIAL_STATE = {
 
 const cartReducer = (state, action) => {
   const{type, payload} = action
-  switch(type){
+   switch(type){
+      case actionTypes.ADD_TO_CART:          
+         return{...state,
+           cartItems: addCartItem(state.cartItems, payload), 
+           total: state.total + 1,
+           quantitiy: state.quantitiy + 1 }
       case actionTypes.SET_CART_ITEMS: 
          return{...state, ...payload}
       case actionTypes.TOGGLE_CART_OPEN:
