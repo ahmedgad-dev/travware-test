@@ -5,9 +5,11 @@ import { Box, Stack,Typography } from '@mui/material'
 import Product from './Product'
 import { IoIosArrowRoundForward } from "react-icons/io";
 
+
  const CardList = () => {
   const [data,setData] = useState([])
-  const dataUrl = 'https://dummyjson.com/products?limit=10&skip=10&select=title,price'
+  const dataUrl = 'https://fakestoreapi.com/products'
+
 
    const fetchJsonProducts = async(url) => {
     try{
@@ -33,12 +35,12 @@ import { IoIosArrowRoundForward } from "react-icons/io";
            <IoIosArrowRoundForward style={{width:'35px', height:'35px'}}/>             
          </Box>
       </Box>
-     <Box className='flex-row'>
-      {
-       data.map((product) => (
-          <div>{product.name}</div>
-       ))
-      } 
+     <Box className='flex flex-row flex-wrap'>
+        {data&&
+          data.map(product => (
+            <Product product={product}/>
+          ))
+          }
      </Box>
    </Stack>
   )

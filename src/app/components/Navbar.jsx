@@ -1,9 +1,9 @@
 import React from 'react'
-import CartButtons from './CartButtons'
+import CartIcon from './cart-icon/CartIcon'
 
 function Navbar() {
   return (
-    <div className="navbar bg-base-100" style={{backgroundColor:'#2D6F6C', color:'white'}}>
+    <div className="navbar bg-base-100" style={{ color:'black'}}>
   <div className="navbar-start">
     <div className="dropdown">
       <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -13,7 +13,7 @@ function Navbar() {
         <li><a href=''>Item 1</a></li>
         <li>
           <a href=''>Parent</a>
-          <ul className="p-2">
+          <ul className="p-2 text-black">
             <li><a href=''>Submenu 1</a></li>
             <li><a href=''>Submenu 2</a></li>
           </ul>
@@ -40,7 +40,7 @@ function Navbar() {
   </div>
   <div className="navbar-end">
     <a href='' className="btn">Button</a>
-    <CartButtons/>
+    <CartIcon/>
   </div>
 </div>
   )

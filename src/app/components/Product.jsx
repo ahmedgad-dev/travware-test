@@ -19,30 +19,29 @@ const styles = {
     color: 'white',
     backgroundColor: '#2D6F6C',
     borderRadius:'20px',
-    transform:'translateX(-2000px)',
     '&:hover':{
       color:'black',
      }
   }
 }
 
- const Product = ({card}) => {
+ const Product = ({product}) => {
   return (
-    <Card className='product' sx={{...styles.product, maxWidth: '350px', width:'350px', height:'460px', margin:'15px', }}>
+    <Card className='product' sx={{...styles.product, maxWidth: '350px', width:'350px', height:'500px', margin:'15px', }}>
       <CardMedia
         sx={{ height: 280, backgroundSize:'cover', backgroundPosition:'center'}}
-        image={card.image}
+        image={product.image}
         title="green iguana"
       />
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
-           {card.title}
+           {product.title.substr(0,20)}
         </Typography>
         <Typography>
           Lorem ipsum dolor sit, amet consectetur adipisicing elit. Illum, sint.
         </Typography>
         <Typography>
-           {card.price}
+           ${product.price}
         </Typography>
       </CardContent>
       <CardActions className='flex-row'>

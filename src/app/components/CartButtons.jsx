@@ -1,21 +1,22 @@
+'use client'
 import React from 'react'
 import { FaShoppingCart} from 'react-icons/fa'
-import { Link } from 'react-router-dom'
+import { Link } from 'next/link'
 import styled from 'styled-components'
-import { useProductsContext } from '../context/products_context'
-import { useCartContext } from '../context/cart_context'
+//import { useProductsContext } from '../context/products_context'
+//import { useCartContext } from '../context/cart_context'
 
 
 const CartButtons = () => {
-  const {closeSidebar} = useProductsContext()
-  const {total_items} = useCartContext()
+ // const {closeSidebar} = useProductsContext()
+ // const {total_items} = useCartContext()
   return(
-    <Wrapper className='cart-btn-wrapper'>
-      <Link to='cart' className='cart-btn'>
+    <Wrapper className=''>
+      <Link href='/cart' className='cart-btn'>
         Cart
         <span className='cart-container'> 
           <FaShoppingCart/> 
-          <span className='cart-value'>{total_items}</span>
+          <span className='cart-value'>3</span>
         </span>
       </Link>
     </Wrapper>
