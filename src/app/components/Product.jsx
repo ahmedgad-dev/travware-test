@@ -42,7 +42,7 @@ const styles = {
            {product.title.substr(0,20)}
         </Typography>
         <Typography>
-          {product.description.substr(0,100)}
+          {product.description.substr(0,90)}
         </Typography>
         <Typography>
            ${product.price}

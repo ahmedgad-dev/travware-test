@@ -11,9 +11,9 @@ const INITIAL_STATE = {
   filters: {
     text: '',
     category: 'all',
-    price: 0,
-    max_price:1000000,
-    min_price:0,
+    price: 1000,
+    max_price:1000,
+    min_price:1,
   }
 }
 

@@ -1,10 +1,8 @@
 "use client"
-import React,{useState, useEffect} from 'react'
-//import {CARDS_DATA}from '../dataFiles/cardData'
+import React from 'react'
 import { Box, Stack,Typography } from '@mui/material'
 import Product from './Product'
 import { IoIosArrowRoundForward } from "react-icons/io";
-//import { useProductsContext } from '../context/products.context';
 import { useFilterContext } from '../context/filter.context';
 
  const ProductList = () => {

@@ -12,7 +12,7 @@ const filter_reducer = (state, action) => {
           ...state,
            all_products: [...action.payload],
           filtered_products:[...action.payload],
-          filters: {...state.filters, price: maxPrice, max_price: maxPrice }
+          filters: {...state.filters,  max_price: maxPrice }
         }
 
       case actionTypes.UPDATE_SORT:
