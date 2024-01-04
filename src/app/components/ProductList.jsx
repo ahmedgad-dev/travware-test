@@ -4,27 +4,11 @@ import React,{useState, useEffect} from 'react'
 import { Box, Stack,Typography } from '@mui/material'
 import Product from './Product'
 import { IoIosArrowRoundForward } from "react-icons/io";
+import { useProductsContext } from '../context/products.context';
 
 
  const ProductList = () => {
-  const [data,setData] = useState([])
-  const dataUrl = 'https://fakestoreapi.com/products'
-
-
-   const fetchJsonProducts = async(url) => {
-    try{
-      const response = await fetch(url)
-      const products = await response.json()
-      console.log(products)
-      setData(products)
-    }catch (error) {
-     console.log(error)
-    }
-  }
-
-  useEffect(() => {
-    fetchJsonProducts(dataUrl) 
-  },[data])
+ const {data} = useProductsContext()
 
   return(
     <Stack className='section' sx={{}}>
