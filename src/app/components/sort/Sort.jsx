@@ -1,6 +1,7 @@
+"use client"
 import React from 'react'
-import { useFilterContext } from '../context/filter_context'
-import { BsFillGridFill, BsList } from 'react-icons/bs'
+import './styles.css'
+import { useFilterContext } from '@/app/context/filter.context'
 import styled from 'styled-components'
 
 

@@ -1,14 +1,13 @@
 "use client"
 import Navbar from './components/Navbar'
-import ProductList from './components/ProductList'
-
+import ProductSortAndFilter from './components/ProductSortAndFilter'
 
 
 export default function Home() {
   return (
-        <main className="">
+        <main className="p-3">
          <Navbar/>
-         <ProductList/> 
+         <ProductSortAndFilter/> 
        </main>
      
   )

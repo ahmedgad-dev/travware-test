@@ -1,15 +1,7 @@
 "use client"
 import React, { useEffect, useContext, useReducer } from 'react'
 import filter_reducer from '../reducers/filter_reducer'
-import {
- /* LOAD_PRODUCTS,
-  UPDATE_SORT,
-  SORT_PRODUCTS,
-  UPDATE_FILTERS,
-  FILTER_PRODUCTS,
-  CLEAR_FILTERS,*/
-  actionTypes
-} from '../reducers/actions'
+import {  actionTypes} from '../reducers/actions'
 import { useProductsContext } from './products.context'
 
 const INITIAL_STATE = {
@@ -59,9 +51,9 @@ export const FilterProvider = ({ children }) => {
     dispatch({type:actionTypes.UPDATE_SORT, payload: value})
   }
 
- /* useEffect(() => {
-     dispatch({type: LOAD_PRODUCTS, payload:products})
-  }, [products])*/
+   useEffect(() => {
+     dispatch({type: actionTypes.LOAD_PRODUCTS, payload:products})
+  }, [products])
 
 
   useEffect(() => {
