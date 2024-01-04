@@ -7,6 +7,7 @@ const filter_reducer = (state, action) => {
         // so we rather copy the values
         let maxPrice = action.payload.map((product) => product.price ) //Iterate over the array to collect all the prices
             maxPrice = Math.max(...maxPrice) //using spread operator because we can't use the Math.max passing an array
+
         return{
           ...state,
            all_products: [...action.payload],
@@ -14,29 +15,25 @@ const filter_reducer = (state, action) => {
           filters: {...state.filters, price: maxPrice, max_price: maxPrice }
         }
 
-    /*  case SET_GRIDVIEW:
-        return {...state, grid_view: true }
-      case SET_LISTVIEW:
-        return {...state, grid_view: false }
-    */
       case actionTypes.UPDATE_SORT:
         return {...state, sort: action.payload}
 
       case actionTypes.SORT_PRODUCTS:
         const {sort, filtered_products} = state
         let tempProducts = [...filtered_products]
-                  //check the sort explanation below
+        //Sorting by price 
         if(sort === 'price-lowest'){
             tempProducts = tempProducts.sort((currentItem, nextItem) => (  currentItem.price - nextItem.price   ))        
         } else if(sort === 'price-highest'){
           tempProducts = tempProducts.sort((currentItem, nextItem) => (  nextItem.price - currentItem.price   )) 
+          // sorting by name [A-Z]
         } else  if(sort === 'name-a'){
           tempProducts = tempProducts.sort((currentItem, nextItem) => {
-            return currentItem.name.localeCompare(nextItem.name)
-        })
+            return currentItem.title.localeCompare(nextItem.title)
+        }) //sorting by name [Z-A]
         } else if(sort === 'name-z'){
           tempProducts = tempProducts.sort((currentItem, nextItem) => {
-            return nextItem.name.localeCompare(currentItem.name)
+            return nextItem.title.localeCompare(currentItem.title)
           })          
         }
         return{...state, filtered_products:tempProducts}
@@ -47,7 +44,7 @@ const filter_reducer = (state, action) => {
 
       case actionTypes.FILTER_PRODUCTS:
              const {all_products} = state
-             // before filtering we should always start with a fresh set of data then start filtering
+             // start with all data then start filtering
              let productsSet = [...all_products]      
              const{  
               text,
@@ -58,7 +55,7 @@ const filter_reducer = (state, action) => {
              //text
              if(text){
                 productsSet = productsSet.filter((product) => {
-                  return product.name.toLowerCase().startsWith(text)
+                  return product.title.toLowerCase().startsWith(text)
                 })
              }
              //category
@@ -67,13 +64,12 @@ const filter_reducer = (state, action) => {
                    return product.category === category
                 })
               }
-
-                //PRICE
-                if(price){
-                  productsSet = productsSet.filter((product) => { 
-                    return product.price <= price
-                  })
-                }
+             //PRICE
+             if(price){
+               productsSet = productsSet.filter((product) => { 
+                 return product.price <= price
+               })
+             }
             
              return {...state, filtered_products: productsSet }
 
@@ -83,11 +79,8 @@ const filter_reducer = (state, action) => {
               filters:{
                 ...state.filters,
                 text: '',
-                company: 'all',
                 category: 'all',
-                color: 'all',
                 price: state.filters.max_price,
-                shipping: false
               }
             }         
       default: return state

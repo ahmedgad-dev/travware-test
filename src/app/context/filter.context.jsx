@@ -12,7 +12,7 @@ const INITIAL_STATE = {
     text: '',
     category: 'all',
     price: 0,
-    max_price:2000000,
+    max_price:1000000,
     min_price:0,
   }
 }
@@ -29,14 +29,8 @@ export const FilterProvider = ({ children }) => {
       if(name === 'category'){
           value = e.target.textContent
       } 
-      if(name ==='color'){
-         value = e.target.getAttribute('data-color')
-      }
       if(name === 'price'){
           value = Number(value)
-      }
-      if(name === 'shipping'){
-          value = e.target.checked
       }
       dispatch({type:actionTypes.UPDATE_FILTERS, payload: {name, value}})
   }
@@ -55,14 +49,10 @@ export const FilterProvider = ({ children }) => {
      dispatch({type: actionTypes.LOAD_PRODUCTS, payload:products})
   }, [products])
 
-
   useEffect(() => {
     dispatch({type: actionTypes.FILTER_PRODUCTS})
     dispatch({type: actionTypes.SORT_PRODUCTS})
   }, [products, state.sort, state.filters])
-
-  
-
 
   return(
     <FilterContext.Provider value={{

@@ -4,27 +4,25 @@ import './styles.css'
 import styled from 'styled-components'
 import { useFilterContext } from '../../context/filter.context'
 import { getUniqueValues, formatPrice } from '../../utils/helpers'
-import { FaCheck } from 'react-icons/fa'
+//import RangeSlider from 'react-range-slider-input';
+//import 'react-range-slider-input/dist/style.css';
+
 
 const Filters = () => {
      const{
       filters: {
         text,
-        company,
         category,
-        color,
         price,
         max_price,
         min_price,
-        shipping
       }, updateFilters, clearFilters, all_products
-     } = useFilterContext()
+     } = useFilterContext() 
 
+     //remove repeated categories from array
      const categories = getUniqueValues(all_products, 'category')
-     const companies = getUniqueValues(all_products, 'company')
-     const colors = getUniqueValues(all_products, 'colors')
 
-  return(
+   return(
     <Wrapper>
       <div className="content">
         {/*  SEARCH INPUT */}
@@ -55,57 +53,14 @@ const Filters = () => {
             </div>
           </div> 
         {/* CATEGORIES */}
-        {/*  COMPANIES */}
-             <div className="form-control">
-                <h5>Company</h5>
-                <select name='company' value={company} onChange={updateFilters} className='company'>
-                  {companies.map( (comp, index) => {
-                    return <option key={index} value={comp}> {comp} </option>               
-                  })}
-                </select>
-             </div>
-        {/*  COMPANIES */}
-        {/* COLORS */}
-             <div className="form-control">
-              <h5>Colors</h5>
-              <div className="colors">
-                {colors.map((col, index) => {
-                  if(col === 'all'){
-                    return (<button 
-                            key={index}
-                            name='color'
-                            onClick={updateFilters}
-                            data-color='all'
-                            className={`${col === 'all' ?  'all-btn active'  : 'all-btn'  }`} >
-                        all
-                    </button>)
-                  }
-                  return(<button key={index}
-                           name='color' 
-                           style={{background: col}}
-                           className={`${color === col? 'color-btn  active' : 'color-btn' }`}
-                           data-color={col}   // can be data- "Then any name we want to use to grab the value"
-                           onClick={updateFilters}
-                           > 
-                           {color === col ?  <FaCheck /> : null }                 
-                         </button>)
-                    })}
-              </div>
-             </div>
-        {/* COLORS */}
+
         {/*  PRICE */} 
             <div className="form-control">
               <h5>Price</h5>
-              <p className="price">{formatPrice(price)}</p>
-              <input type="range" name="price" onChange={updateFilters} min={min_price} max={max_price} value={price}/>
+              <p className="price">${price}</p>
+              <input type='range' name='price' onChange={updateFilters} min={min_price} max={max_price} value={price}/>
             </div>
-        {/*  PRICE */}  
-        {/* SHIPPING */}      
-            <div className="form-control shipping">
-              <label htmlFor="shipping">free shipping</label>
-              <input type="checkbox" name="shipping" id="shipping" onChange={updateFilters} checked={shipping}/>
-            </div>
-        {/* SHIPPING */}                      
+        {/*  PRICE */}                      
         </form>
         <button type='button' className='clear-btn' onClick={clearFilters}>clear filters</button>
       </div>
@@ -122,10 +77,9 @@ const Wrapper = styled.section`
   }
   .search-input {
     padding: 0.5rem;
-    background: var(--clr-grey-10);
-    border-radius: var(--radius);
-    border-color: transparent;
-    letter-spacing: var(--spacing);
+    border-radius: 5px;
+    border: 1px solid black;
+    letter-spacing: 1px;
   }
   .search-input::placeholder {
     text-transform: capitalize;
@@ -139,23 +93,13 @@ const Wrapper = styled.section`
     background: transparent;
     border: none;
     border-bottom: 1px solid transparent;
-    letter-spacing: var(--spacing);
-    color: var(--clr-grey-5);
+    letter-spacing: 1px;
     cursor: pointer;
   }
   .active {
-    border-color: var(--clr-grey-5);
+    border-color:gray;
   }
-  .company {
-    background: var(--clr-grey-10);
-    border-radius: var(--radius);
-    border-color: transparent;
-    padding: 0.25rem;
-  }
-  .colors {
-    display: flex;
-    align-items: center;
-  }
+
   .color-btn{
     display: inline-block;
     width: 1rem;
@@ -171,7 +115,7 @@ const Wrapper = styled.section`
     justify-content: center;
     svg {
       font-size: 0.5rem;
-      color: var(--clr-white);
+      color: white;
     }
   }
   .all-btn {
@@ -199,10 +143,10 @@ const Wrapper = styled.section`
     font-size: 1rem;
   }
   .clear-btn {
-    background: var(--clr-red-dark);
-    color: var(--clr-white);
-    padding: 0.25rem 0.5rem;
-    border-radius: var(--radius);
+    background: #2D6F6C;
+    color: white;
+    padding: 0.5rem;
+    border-radius: 10px;
   }
   @media (min-width: 768px) {
     .content {

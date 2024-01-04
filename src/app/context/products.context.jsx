@@ -7,6 +7,8 @@ const INITIAL_STATE = {
 export const ProductsProvider = ({ children }) => {
   const [data,setData] = useState([])
   const dataUrl = 'https://fakestoreapi.com/products'
+
+  
   const fetchJsonProducts = async(url) => {
    try{
      const response = await fetch(url)

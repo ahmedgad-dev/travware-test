@@ -4,11 +4,15 @@ import React,{useState, useEffect} from 'react'
 import { Box, Stack,Typography } from '@mui/material'
 import Product from './Product'
 import { IoIosArrowRoundForward } from "react-icons/io";
-import { useProductsContext } from '../context/products.context';
-
+//import { useProductsContext } from '../context/products.context';
+import { useFilterContext } from '../context/filter.context';
 
  const ProductList = () => {
- const {data} = useProductsContext()
+  const {filtered_products: products} = useFilterContext();
+
+  if(products.length < 1) {
+    return (<h5 style={{textTransform: 'none'}}> Sorry No Products Match Your Search</h5>)
+  } 
 
   return(
     <Stack className='section' sx={{}}>
@@ -20,8 +24,8 @@ import { useProductsContext } from '../context/products.context';
          </Box>
       </Box>
      <Box className='flex flex-row flex-wrap'>
-        {data&&
-          data.map(product => (
+        {products&&
+          products.map(product => (
             <Product product={product}/>
           ))
           }
