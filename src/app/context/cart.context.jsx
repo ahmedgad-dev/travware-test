@@ -2,6 +2,7 @@
 import React, {createContext,useReducer} from 'react'
 //import cartReducer from '../reducers/cartReducer'
 import { actionTypes } from '../reducers/actions'
+import cart_reducer from '../reducers/cart_reducer'
 
 //Helper function creates a new property of quantity to an item if first time add or adds to the quantitiy if existsing
 export const addCartItem = (cartItems, productToAdd) => {
@@ -41,28 +42,11 @@ const INITIAL_STATE = {
    cartTotal: 0,
 }
 
-const cartReducer = (state, action) => {
-  const{type, payload} = action
-   switch(type){
-      case actionTypes.ADD_TO_CART:          
-         return{...state,
-           cartItems: addCartItem(state.cartItems, payload), 
-           total: state.total + 1,
-           quantitiy: state.quantitiy + 1 }
-      case actionTypes.SET_CART_ITEMS: 
-         return{...state, ...payload}
-      case actionTypes.TOGGLE_CART_OPEN:
-        return{ ...state,
-               cartOpen: !state.cartOpen} 
-      case actionTypes.OPEN_CART:
-            return{...state, cartOpen: true}                  
-      default: throw new Error('unhandled type')
-  }
-}
+
 
 
 export const CartProvider = ({children})  => {
-  const[state, dispatch] = useReducer(cartReducer, INITIAL_STATE)
+  const[state, dispatch] = useReducer(cart_reducer, INITIAL_STATE)
 
   const toggleCartOpen = () => {
     dispatch({type: actionTypes.TOGGLE_CART_OPEN})

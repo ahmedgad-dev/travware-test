@@ -6,6 +6,7 @@ const INITIAL_STATE = {
 }
 export const ProductsProvider = ({ children }) => {
   const [data,setData] = useState([])
+  //calling fake store api to fetch JSON data samples
   const dataUrl = 'https://fakestoreapi.com/products'
 
   
@@ -13,7 +14,6 @@ export const ProductsProvider = ({ children }) => {
    try{
      const response = await fetch(url)
      const products = await response.json()
-     console.log(products)
      setData(products)
    }catch (error) {
     console.log(error)

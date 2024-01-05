@@ -20,7 +20,10 @@ const filter_reducer = (state, action) => {
 
       case actionTypes.SORT_PRODUCTS:
         const {sort, filtered_products} = state
-        let tempProducts = [...filtered_products]
+        let tempProducts
+        if(filtered_products){
+          tempProducts =  [...filtered_products]
+        }
         //Sorting by price 
         if(sort === 'price-lowest'){
             tempProducts = tempProducts.sort((currentItem, nextItem) => (  currentItem.price - nextItem.price   ))        
@@ -45,7 +48,10 @@ const filter_reducer = (state, action) => {
       case actionTypes.FILTER_PRODUCTS:
              const {all_products} = state
              // start with all data then start filtering
-             let productsSet = [...all_products]      
+             let productsSet = []
+             if(all_products){
+              productsSet = [...all_products]
+             }      
              const{  
               text,
               category,

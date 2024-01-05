@@ -1,12 +1,3 @@
-export const formatPrice = (price) => {
-   return new Intl.NumberFormat('en-US', {   //make suree to use the new keyword
-    style: 'currency',
-    currency: 'USD',   
-   }).format(price / 100)
-}
-
-
-
 export const getUniqueValues = (products, type) => {
    let unique = products.map((product) => product[type])
    if(type === 'colors'){

@@ -1,6 +1,5 @@
 "use client"
 import React from 'react'
-import './styles.css'
 import { useFilterContext } from '@/app/context/filter.context'
 import styled from 'styled-components'
 
@@ -86,6 +85,7 @@ const Wrapper = styled.section`
     text-transform: capitalize;
     padding: 0.25rem 0.5rem;
   }
+
   label {
     font-size: 1rem;
     text-transform: capitalize;

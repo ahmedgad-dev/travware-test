@@ -3,10 +3,7 @@ import React from 'react'
 import './styles.css'
 import styled from 'styled-components'
 import { useFilterContext } from '../../context/filter.context'
-import { getUniqueValues, formatPrice } from '../../utils/helpers'
-//import RangeSlider from 'react-range-slider-input';
-//import 'react-range-slider-input/dist/style.css';
-
+import { getUniqueValues} from '../../utils/helpers'
 
 const Filters = () => {
      const{

@@ -24,9 +24,9 @@ import { useFilterContext } from '../context/filter.context';
      <Box className='flex flex-row flex-wrap'>
         {products&&
           products.map(product => (
-            <Product product={product}/>
+            <Product key={product.id} product={product}/>
           ))
-          }
+        }
      </Box>
    </Stack>
   )
