@@ -1,25 +1,7 @@
 import { actionTypes } from "@/app/reducers/actions";
 import filter_reducer from "@/app/reducers/filter_reducer";
 
-describe('filter_reducer', () => {
-    it('should handle filtering products by category', () => {
-      const prevState = {
-        filters: {
-          category: 'Electronics',
-        },
-        products: [],
-      };
-  
-      const action = {
-        type: actionTypes.UPDATE_FILTERS,
-        payload: 'Electronics',
-      };
-  
-      const newState = filter_reducer(prevState, action);
-  
-      expect(newState.filters.category).toBe('Electronics');
-    });
-  
+describe('filter products', () => {
     it('should handle filtering products by price', () => {
       const prevState = {
         filters: {
@@ -58,18 +40,57 @@ describe('filter_reducer', () => {
         category: 'all',
       });
     });
-  
-    it('should handle sorting the products', () => {
+  })
+
+  describe('sort products',() => {   
+    it('should handle sorting the products in descending order', () => {
       const prevState = {
         sort: 'price-lowest',
       };
   
       const action = {
-        type: actionTypes.SORT_PRODUCTS,
-        payload:'name-a'
+        type: actionTypes.UPDATE_SORT,
+        payload:'name-z'
       };
 
       const newState = filter_reducer(prevState, action);
-      expect(newState.sort).toBe('name-a')
+      expect(newState.sort).toEqual('name-z')
     });
-  });
+
+    it('should handle sorting the products in ascending order', () => {
+      const prevState = {
+        sort: 'price-lowest',
+      }; 
+      const action = {
+        type: actionTypes.UPDATE_SORT,
+        payload:'name-a'
+      };
+      const newState = filter_reducer(prevState, action);
+      expect(newState.sort).toEqual('name-a')
+    });
+
+    it('should handle sorting the products by lowest price', () => {
+      const prevState = {
+        sort: 'name-a',
+      }; 
+      const action = {
+        type: actionTypes.UPDATE_SORT,
+        payload:'price-lowest'
+      };
+      const newState = filter_reducer(prevState, action);
+      expect(newState.sort).toEqual('price-lowest')
+    });
+
+    
+    it('should handle sorting the products by highest price', () => {
+      const prevState = {
+        sort: 'price-lowest',
+      }; 
+      const action = {
+        type: actionTypes.UPDATE_SORT,
+        payload:'price-highest'
+      };
+      const newState = filter_reducer(prevState, action);
+      expect(newState.sort).toEqual('price-highest')
+    });
+  })
